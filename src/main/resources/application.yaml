@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: BlockchainHackathonFoundation
+    profiles:
+          active: development
+server:
+    port: 9090
+security:
+    user:
+        name: user
+        password: password
