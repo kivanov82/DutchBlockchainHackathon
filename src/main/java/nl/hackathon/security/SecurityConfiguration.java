@@ -22,9 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic().and()
                 .formLogin().loginPage("/").and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/partials/login.html", "/fonts/*", "/").permitAll()
+                .antMatchers("/index.html", "/fonts/*", "/bower_components/**", "/src/**", "/").permitAll()
+
                 .anyRequest().authenticated()
-                .and().logout();
+                .and()
+                .logout()
+                .and()
+                .csrf().disable();
         // @formatter:on
     }
 

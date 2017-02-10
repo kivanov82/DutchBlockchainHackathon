@@ -1,0 +1,84 @@
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="dbh-login">
+    <template>
+        <style>
+            paper-input {
+                width: 150px;
+                text-align: center;
+            }
+
+            #passwordInput {
+                margin-bottom: 10px;
+            }
+
+            paper-button {
+                background: #3f51b5;
+                color: white;
+                width: 150px;
+                margin-bottom: 20px;
+            }
+
+            paper-material {
+                width: 250px;
+                height: 250px;
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+        </style>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <iron-ajax
+                id="login"
+                method="POST"
+                url="http://localhost:9090/user"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
+        <paper-material z="3" class="horizontal layout center-justified">
+            <div class="vertical layout center-justified">
+                <h2 class="horizontal layout center-justified">Login</h2>
+                <paper-input id="userInput" label="Username" value="{{user}}"></paper-input>
+                <paper-input id="passwordInput" label="Password" value="{{pass}}" type="password"></paper-input>
+                <paper-button raised on-tap="submit">Submit</paper-button>
+            </div>
+        </paper-material>
+    </template>
+
+    <script>
+    Polymer({
+
+      is: 'dbh-login',
+
+      properties: {
+        headers: {
+            type: Object,
+            value: function(){return {};}
+        },
+        user: {
+          type: String,
+          value: 'Fan',
+        },
+        pass: {
+          type: String,
+          value: 'password',
+        }
+      },
+
+      submit: function() {
+        var ajax = this.$.login;
+        this.headers["Authorization"] = 'Basic ' + btoa(this.user + ':' + this.pass);
+        ajax.generateRequest();
+      },
+
+      handleResponse: function(event) {
+        console.log(event);
+      }
+
+    });
+
+  </script>
+</dom-module>

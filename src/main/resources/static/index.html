@@ -1,40 +1,24 @@
-<!DOCTYPE html>
-<html ng-app="hackathonApp">
-<head>
-    <base href="/"/>
-    <title>Blockchain Hackathon</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+      <title>DutchBlockchainHackathon</title>
+      <meta name="description" content="DutchBlockchainHackathon description">
 
-    <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
-    <link rel="stylesheet" href="css/animate.css" media="screen"/>
-    <link rel="stylesheet" href="css/hackathon.css" media="screen">
+      <link rel="manifest" href="/manifest.json">
 
-    <!--Libs-->
-    <script src="js/libs/jquery-3.1.1.min.js"></script>
-    <script src="js/libs/bootstrap.min.js"></script>
-    <script src="js/libs/angular.min.js"></script>
-    <script src="js/libs/angular-route.min.js"></script>
-    <script src="js/libs/angular-resource.min.js"></script>
-    <script src="js/libs/angular-cookies.min.js"></script>
+      <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+      <link rel="import" href="/bower_components/polymer/polymer.html">
+      <link rel="import" href="/bower_components/font-roboto/roboto.html">
+      <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-    <!--Custom components-->
-    <script src="js/libs/smart-table.min.js"></script>
-    <script src="js/libs/angular-spinners.min.js"></script>
-    <script src="js/libs/bootstrap-notify.min.js"></script>
+      <link rel="import" href="/src/dbh-app/dbh-app.html">
 
-    <!--Modules-->
-    <script src="js/auth/auth.js"></script>
-    <!--Angular starts here-->
-    <script src="js/app.js"></script>
-    <!--Controllers-->
-    <script src="js/controllers/main.js"></script>
-    <script src="js/controllers/login.js"></script>
-</head>
-<body>
-<div ng-view></div>
-</body>
+
+  </head>
+  <body>
+    <dbh-app></dbh-app>
+  </body>
 </html>
