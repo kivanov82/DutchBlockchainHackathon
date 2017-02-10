@@ -5,7 +5,26 @@ spring:
           active: development
 server:
     port: 9090
-security:
-    user:
-        name: user
-        password: password
+main:
+    pkey: 53652a8bf2e5daa4e38965cb1474f651a62cfd01cdd23d9ca3c64d97fd3a4165
+musician:
+    address: b57180ae487109921325ca0e7d1ccf85a4aee87b
+    pkey: cebba3ca1a08d8b578a33b208c2e45366f4ad8138e7e7b79d2782ca793dd1085
+contract:
+    musician:
+          rating: 227e1979d42b02c152cfa7735bcaa980c682fc
+          wallet1: e44fd7206ad06d8a91553e51ce54f3f1613fa223
+
+---
+spring:
+  profiles: integration
+contract:
+    musician:
+          rating: 227e1979d42b02c152cfa7735bcaa980c682fc
+          wallet1: e44fd7206ad06d8a91553e51ce54f3f1613fa223
+
+---
+spring:
+  profiles: development
+main:
+    pkey: fba26f1556b8c7b473d01e3eae218318f752e808407794fc0b6490988a33a82d

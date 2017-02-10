@@ -5,9 +5,6 @@
 var HackathonApp = angular.module('hackathonApp', [
     'ngRoute',
     'auth',
-    'nvd3',
-    'smart-table', //https://lorenzofox3.github.io/smart-table-website/
-    'angularSpinners', //https://github.com/Chevtek/angular-spinners
     'hackathonControllers'
 ]);
 

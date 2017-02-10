@@ -1,5 +1,6 @@
-package nl.hackathon.ethereum;
+package nl.hackathon.ethereum.contracts;
 
+import java.math.BigInteger;
 import java.util.concurrent.CompletableFuture;
 
 import org.adridadou.ethereum.values.EthAddress;
@@ -10,5 +11,7 @@ import org.adridadou.ethereum.values.EthAddress;
 public interface RatingContract {
 
     CompletableFuture<Boolean> vote(EthAddress key);
+
+    BigInteger ratings(EthAddress address);
 
 }
