@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic().and()
                 .formLogin().loginPage("/").and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/fonts/*", "/bower_components/**", "/src/**", "/").permitAll()
+                .antMatchers("/index.html", "/fonts/*", "/bower_components/**", "/img/**", "/src/**", "/").permitAll()
 
                 .anyRequest().authenticated()
                 .and()
