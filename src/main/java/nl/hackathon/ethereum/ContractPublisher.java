@@ -19,21 +19,23 @@ public class ContractPublisher {
 
     private final Logger log = LoggerFactory.getLogger(ContractPublisher.class);
 
-    public RatingContract publishRatingContract(EthereumFacade facade, EthAccount mainAccount) throws ExecutionException, InterruptedException {
+    public EthAddress publishRatingContract(EthereumFacade facade, EthAccount mainAccount) throws ExecutionException, InterruptedException {
         //publish rating contract
         SoliditySource contractSource = SoliditySource.from(this.getClass().getResourceAsStream("/contracts/RatingContract.sol"));
         CompiledContract compiledContract = facade.compile(contractSource).get().get("RatingContract");
         EthAddress address = facade.publishContract(compiledContract, mainAccount).get();
 
         log.info("RatingContract is published " + address);
-        return facade.createContractProxy(compiledContract, address, mainAccount, RatingContract.class);
+        facade.createContractProxy(compiledContract, address, mainAccount, RatingContract.class);
+        return address;
     }
 
-    public EthAddress publishWalletContract(EthereumFacade facade, EthAccount mainAccount) throws ExecutionException, InterruptedException {
-        //publish rating contract
+    public EthAddress publishWalletContract(EthereumFacade facade, EthAccount mainAccount, EthAddress ratingAddress, EthAddress musicianAddress)
+            throws ExecutionException, InterruptedException {
+        //publish wallet contract
         SoliditySource contractSource = SoliditySource.from(this.getClass().getResourceAsStream("/contracts/WalletContract.sol"));
         CompiledContract compiledContract = facade.compile(contractSource).get().get("WalletContract");
-        EthAddress address = facade.publishContract(compiledContract, mainAccount).get();
+        EthAddress address = facade.publishContract(compiledContract, mainAccount, ratingAddress, musicianAddress).get();
 
         log.info("WalletContract is published " + address);
         WalletContract contract = facade.createContractProxy(compiledContract, address, mainAccount, WalletContract.class);

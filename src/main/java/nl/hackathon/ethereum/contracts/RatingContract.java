@@ -10,8 +10,8 @@ import org.adridadou.ethereum.values.EthAddress;
  */
 public interface RatingContract {
 
-    CompletableFuture<Boolean> vote(EthAddress key);
-
     BigInteger ratings(EthAddress address);
+
+    CompletableFuture<Boolean> rate(EthAddress fan, EthAddress musician);
 
 }
