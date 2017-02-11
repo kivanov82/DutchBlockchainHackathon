@@ -37,6 +37,7 @@
                 handle-as="json"
                 headers="[[headers]]"
                 on-response="handleResponse"
+                on-error="handleError"
                 debounce-duration="300"></iron-ajax>
         <paper-material z="3" class="horizontal layout center-justified">
             <div class="vertical layout center-justified">
@@ -75,7 +76,11 @@
       },
 
       handleResponse: function(event) {
-        console.log(event);
+        console.log('[RESPONSE]', event);
+      },
+
+      handleError: function(event) {
+        console.log('[ERROR]', event);
       }
 
     });

@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
 <link rel="import" href="../dbh-login/dbh-login.html">
+<link rel="import" href="../dbh-profile-musician/dbh-profile-musician.html">
 
 <dom-module id="dbh-app">
   <template>
@@ -26,8 +27,8 @@
           <div>Menu</div>
         </paper-toolbar>
         <paper-menu>
-          <paper-item>Item 1</paper-item>
-          <paper-item>Item 2</paper-item>
+          <paper-item on-tap="show1">Item 1</paper-item>
+          <paper-item on-tap="show2">Item 2</paper-item>
         </paper-menu>
       </paper-header-panel>
       <paper-header-panel main>
@@ -36,7 +37,8 @@
           <div>Music2Nation</div>
         </paper-toolbar>
         <div>
-          <dbh-login></dbh-login>
+          <dbh-login hidden="[[hidden1]]"></dbh-login>
+          <dbh-profile-musician hidden="[[hidden2]]"></dbh-profile-musician>
         </div>
       </paper-header-panel>
     </paper-drawer-panel>
@@ -48,11 +50,21 @@
       is: 'dbh-app',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'dbh-app',
+        hidden1: {
+          type: Boolean,
+          value: false
         },
       },
+
+      show1: function() {
+        this.hidden1 = false;
+        this.hidden2 = true;
+      },
+
+      show2: function() {
+        this.hidden1 = true;
+        this.hidden2 = false;
+      }
 
     });
   </script>

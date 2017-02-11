@@ -1,0 +1,78 @@
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="dbh-profile-musician">
+    <template>
+        <style>
+
+        </style>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <iron-ajax
+                auto
+                id="infoBalance"
+                method="POST"
+                url="http://localhost:9090/balance"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleBalance"
+                debounce-duration="300"></iron-ajax>
+        <iron-ajax
+                auto
+                id="infoReputation"
+                method="POST"
+                url="http://localhost:9090/reputation"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleReputation"
+                debounce-duration="300"></iron-ajax>
+        <paper-material z="3" class="horizontal layout center-justified">
+            <div class="vertical layout center-justified">
+                <paper-input disabled id="balanceInput" label="Balance" value="{{balance}}"></paper-input>
+                <paper-input disabled id="reputationInput" label="Reputation" value="{{reputation}}"></paper-input>
+            </div>
+        </paper-material>
+    </template>
+
+    <script>
+    Polymer({
+
+      is: 'dbh-profile-musician',
+
+      properties: {
+        headers: {
+            type: Object,
+            value: function(){return {};}
+        },
+        balance: {
+          type: String,
+          value: '0',
+        },
+        reputation: {
+          type: String,
+          value: '0',
+        }
+      },
+
+      created: function() {
+        this.headers["Authorization"] = 'Basic ' + btoa('Fan' + ':' + 'password');
+      },
+
+      handleBalance: function(event) {
+        this.balance = +this.balance + 1;
+        setTimeout(function() {
+            this.$.infoBalance.generateRequest();
+        }, 1000);
+      },
+
+      handleReputation: function(event) {
+        this.reputation = +this.reputation + 1;
+        setTimeout(function() {
+            this.$.infoReputation.generateRequest();
+        }, 1000);
+      }
+
+    });
+
+  </script>
+</dom-module>
