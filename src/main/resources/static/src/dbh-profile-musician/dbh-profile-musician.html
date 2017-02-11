@@ -11,17 +11,18 @@
         <iron-ajax
                 auto
                 id="infoBalance"
-                method="POST"
-                url="http://localhost:9090/balance"
+                method="GET"
+                url="http://localhost:9090/musician/getWalletBalance"
                 handle-as="json"
+                params='{"walletName":"wallet1"}'
                 headers="[[headers]]"
                 on-response="handleBalance"
                 debounce-duration="300"></iron-ajax>
         <iron-ajax
                 auto
                 id="infoReputation"
-                method="POST"
-                url="http://localhost:9090/reputation"
+                method="GET"
+                url="http://localhost:9090/musician/getRating"
                 handle-as="json"
                 headers="[[headers]]"
                 on-response="handleReputation"
@@ -54,11 +55,12 @@
         }
       },
 
-      created: function() {
+      ready: function() {
         this.headers["Authorization"] = 'Basic ' + btoa('Fan' + ':' + 'password');
       },
 
       handleBalance: function(event) {
+        console.log(event);
         this.balance = +this.balance + 1;
         setTimeout(function() {
             this.$.infoBalance.generateRequest();
