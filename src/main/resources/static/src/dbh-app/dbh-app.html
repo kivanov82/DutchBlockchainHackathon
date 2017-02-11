@@ -5,10 +5,13 @@
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-location/iron-location.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 
 <link rel="import" href="../dbh-login/dbh-login.html">
+<link rel="import" href="../dbh-maps/dbh-maps.html">
 <link rel="import" href="../dbh-home/dbh-home.html">
 <link rel="import" href="../dbh-news/dbh-news.html">
 <link rel="import" href="../dbh-about-us/dbh-about-us.html">
@@ -17,6 +20,20 @@
 
 <dom-module id="dbh-app">
   <template>
+    <style>
+      :host {
+        display: block;
+          font-family: Didact Gothic;
+      !important;
+        color: white;
+          background: rgb(30, 92, 87);
+        height: 100%;
+      }
+
+      paper-menu,
+      paper-item {
+        color: white;
+      }
       <style is="custom-style" include="iron-flex iron-flex-alignment">
           :host {
             display: block;
