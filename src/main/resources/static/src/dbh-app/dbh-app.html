@@ -1,31 +1,26 @@
-<link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
-<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-location/iron-location.html">
 
 
 <link rel="import" href="../dbh-login/dbh-login.html">
 <link rel="import" href="../dbh-home/dbh-home.html">
-<link rel="import" href="../dbh-home/dbh-news.html">
-<link rel="import" href="../dbh-home/dbh-about-us.html">
-<link rel="import" href="../dbh-home/dbh-contact.html">
+<link rel="import" href="../dbh-news/dbh-news.html">
+<link rel="import" href="../dbh-about-us/dbh-about-us.html">
+<link rel="import" href="../dbh-contact/dbh-contact.html">
 <link rel="import" href="../dbh-profile-musician/dbh-profile-musician.html">
 
 <dom-module id="dbh-app">
   <template>
     <style>
-      html {
-        color: white;
-      }
-
       :host {
         display: block;
         font-family: Roboto;
         color: white;
+        background: rgb(102, 205, 170);
+        height: 100%;
       }
 
       paper-menu,
@@ -40,6 +35,10 @@
       paper-input {
         color: white
       }
+
+      #main {
+        background: green;
+      }
     </style>
     <iron-location id="location"></iron-location>
     <paper-toolbar flex layout horizontal justified>
@@ -49,12 +48,12 @@
         <paper-item id="3" on-tap="openScreen">Contact</paper-item>
         <paper-item id="4" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
     </paper-toolbar>
-    <div>
-      <dbh-home id="item0"></dbh-home>
+    <div main>
+      <dbh-home id="item0" role="{{role}}"></dbh-home>
       <dbh-news id="item1"></dbh-news>
       <dbh-about-us id="item2"></dbh-about-us>
       <dbh-contact id="item3"></dbh-contact>
-      <dbh-login id="item4" authorized="{{authorized}}"></dbh-login>
+      <dbh-login id="item4" role="{{role}}" authorized="{{authorized}}"></dbh-login>
       <dbh-profile-musician id="item5"></dbh-profile-musician>
     </div>
   </template>
@@ -73,11 +72,15 @@
         authorized: {
           type: Boolean,
           observer: 'authorizedChanged'
+        },
+        role: {
+            type: String,
+            observer: 'roleChanged'
         }
       },
 
       ready: function() {
-        this.$.item0.hidden = true;
+        this.$.item0.hidden = false;
         this.$.item1.hidden = true;
         this.$.item3.hidden = true;
         this.$.item4.hidden = true;
@@ -90,7 +93,7 @@
 
       selectedIndexChanged: function(newIndex, oldIndex) {
         console.log(newIndex,oldIndex);
-        if (oldIndex) {
+        if (typeof oldIndex !== "undefined") {
           this.$["item" + oldIndex].hidden = true;
         }
         this.$["item" + newIndex].hidden = false;
@@ -98,6 +101,10 @@
 
       authorizedChanged: function() {
         this.selectedIndex = 0;
+      },
+
+      roleChanged: function() {
+
       }
 
     });

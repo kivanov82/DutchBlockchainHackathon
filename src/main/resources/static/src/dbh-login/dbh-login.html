@@ -66,6 +66,11 @@
           type: Boolean,
           notify: true,
           value: false
+        },
+        role: {
+            type: String,
+            notify: true,
+            value: "guest"
         }
       },
 
@@ -77,6 +82,10 @@
 
       handleResponse: function(event) {
         this.authorized = true;
+        console.log(event.detail.response);
+        if (event.detail.response.authorities) {
+            this.role = event.detail.response.authorities[0].authority;
+        }
       },
 
       handleError: function(event) {
@@ -84,6 +93,10 @@
       }
 
     });
+
+    function showLoginError() {
+        android.showLoginError();
+    }
 
   </script>
 </dom-module>

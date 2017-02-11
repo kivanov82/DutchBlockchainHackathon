@@ -1,19 +1,36 @@
+<link rel="import" href="./types/dbh-home-general.html">
+<link rel="import" href="./types/dbh-home-fan.html">
+<link rel="import" href="./types/dbh-home-musician.html">
+
 <dom-module id="dbh-home">
     <template>
         <style>
 
         </style>
-        <div></div>
+        <dbh-home-general id="guest"></dbh-home-general>
+        <dbh-home-fan id="ROLE_FAN" hidden="true"></dbh-home-fan>
+        <dbh-home-musician id="ROLE_MUSICIAN" hidden="true"></dbh-home-musician>
     </template>
 
     <script>
     Polymer({
 
-      is: 'dbh-home',
+        is: 'dbh-home',
 
-      properties: {
+        properties: {
+            role: {
+                type: String,
+                observer: "roleChanged",
+                value: "guest"
+            }
+        },
 
-      }
+        roleChanged: function(newRole, oldRole) {
+            if (oldRole) {
+                this.$[oldRole].hidden = true;
+            }
+            this.$[newRole].hidden = false;
+        }
 
     });
   </script>
