@@ -5,26 +5,19 @@
         <style>
             google-map {
                 height: 300px;
-                width: 400px;
+                width: 100%;
                 float: right;
-                margin-right: 200px;
-            }
-
-            .yellow {
-                color: yellow;
-            }
-
-            #rood {
-                color: red;
             }
         </style>
 
 
-        <div id="abc" class="resizable">
-        <google-map fit-to-marker latitude="53.209934" longitude="6.567842100000007" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc">
-            <google-map-marker latitude="53.224529" longitude="6.564216" draggable="true"></google-map-marker>
-            <google-map-marker latitude="52.074733" longitude="4.307655" draggable="true"></google-map-marker>
-            <google-map-marker latitude="52.362141" longitude="4.883826" draggable="true"></google-map-marker>
+        <div class="resizable">
+        <google-map fit-to-marker zoom="15" latitude="53.209934" longitude="6.567842100000007" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc">
+            <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/red-dot.png" latitude="53.209934" longitude="6.567842100000007"></google-map-marker>
+            <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="53.2122536" longitude="6.566071"></google-map-marker>
+            <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="53.2109805" longitude="6.5640508"></google-map-marker>
+            <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="52.074733" longitude="4.307655"></google-map-marker>
+            <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="52.362141" longitude="4.883826"></google-map-marker>
         </google-map>
 
         </div>
@@ -33,11 +26,7 @@
     <script>
         Polymer({
 
-            is: 'dbh-maps',
-
-                properties: {
-                role: String
-            }
+            is: 'dbh-maps'
 
         });
     </script>

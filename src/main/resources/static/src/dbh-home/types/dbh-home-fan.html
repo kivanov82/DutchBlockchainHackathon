@@ -1,3 +1,6 @@
+<link rel="import" href="../../dbh-maps/dbh-maps.html">
+<link rel="import" href="../../dbh-artist-image/dbh-artist-image.html">
+
 <dom-module id="dbh-home-fan">
     <template>
         <style>
@@ -17,27 +20,68 @@
                 background: rgb(30, 92, 87);
             }
 
-            .title {
-                @apply(--layout-horizontal);
-                background: rgb(191,33,32);
-                padding: 10px;
+            .left {
                 margin-left: 40px;
+                margin-top: 20px;
+                margin-bottom: 60px;
+            }
+
+            .right {
                 margin-right: 40px;
                 margin-top: 20px;
+                margin-bottom: 60px;
+                width: 500px;
+            }
+
+            .title {
+                background: rgb(191,33,32);
+                padding: 10px;
+                margin-right: 0px;
+            }
+
+            .first {
+                width: 70px;
+            }
+
+            .second {
                 width: 70px;
             }
 
             .intro {
-                margin-left: 40px;
-                margin-top: 20px;
+                margin-top: 10px;
+                margin-bottom: 20px;
             }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
         <div>
             <div class="content flex layout wrap">
-                <div class="container layout vertical">
-                    <div class="title">Following</div>
-                    <div class="intro">Trending artist</div>
+                <div class="container horizontal layout flex">
+                    <div class="left">
+                        <div>
+                            <div class="title first">Following</div>
+                            <div class="intro">Trending artists</div>
+                            <div class="layout vertical">
+                                <div class="layout horizontal">
+                                    <dbh-artist-image image="../../../img/artist-1.jpg"></dbh-artist-image>
+                                    <dbh-artist-image image="../../../img/artist-2.jpg"></dbh-artist-image>
+                                    <dbh-artist-image image="../../../img/artist-3.jpg"></dbh-artist-image>
+                                </div>
+                                <div class="layout horizontal">
+                                    <dbh-artist-image image="../../../img/artist-4.jpg"></dbh-artist-image>
+                                    <dbh-artist-image image="../../../img/artist-5.jpg"></dbh-artist-image>
+                                    <dbh-artist-image image="../../../img/artist-6.jpg"></dbh-artist-image>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layout flex"></div>
+                    <div class="right">
+                        <div>
+                            <div class="title second">GEO-track</div>
+                            <div class="intro">Music in the hood</div>
+                            <dbh-maps class="map"></dbh-maps>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
