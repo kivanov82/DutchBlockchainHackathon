@@ -5,28 +5,27 @@
 
 <dom-module id="dbh-login">
     <template>
-        <style>
+        <style is="custom-style">
+            :root {
+                --paper-input-container-color: rgb(191,33,32);
+                --paper-input-container-focus-color: rgb(191,33,32);
+                --paper-input-container-invalid-color: rgb(191,33,32);
+                --paper-input-container-input-color: white;
+            }
             paper-input {
-                width: 150px;
+                margin: 20px;
+                color: white;
                 text-align: center;
             }
 
-            #passwordInput {
-                margin-bottom: 10px;
-            }
-
             paper-button {
-                background: #3f51b5;
+                background: rgb(191,33,32);
                 color: white;
-                width: 150px;
-                margin-bottom: 20px;
+                margin: 20px;
             }
 
             paper-material {
-                width: 250px;
-                height: 250px;
-                margin-left: 10px;
-                margin-top: 10px;
+                margin: 20px;
             }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
@@ -35,15 +34,15 @@
                 method="POST"
                 url="http://localhost:9090/user"
                 handle-as="json"
-                headers="[[headers]]"
+                headers="{}"
                 on-response="handleResponse"
                 on-error="handleError"
                 debounce-duration="300"></iron-ajax>
-        <paper-material z="3" class="horizontal layout center-justified">
-            <div class="vertical layout center-justified">
+        <paper-material elevation="0" class="horizontal layout center-justified">
+            <div class="vertical layout flex center-justified">
                 <h2 class="horizontal layout center-justified">Login</h2>
-                <paper-input id="userInput" label="Username" value="{{user}}"></paper-input>
-                <paper-input id="passwordInput" label="Password" value="{{pass}}" type="password"></paper-input>
+                <paper-input label="Username" value="{{user}}"></paper-input>
+                <paper-input label="Password" value="{{pass}}" type="password"></paper-input>
                 <paper-button raised on-tap="submit">Submit</paper-button>
             </div>
         </paper-material>
@@ -55,10 +54,6 @@
       is: 'dbh-login',
 
       properties: {
-        headers: {
-            type: Object,
-            value: function() { return {}; }
-        },
         user: {
           type: String,
           value: 'Fan',
@@ -66,21 +61,26 @@
         pass: {
           type: String,
           value: 'password',
+        },
+        authorized: {
+          type: Boolean,
+          notify: true,
+          value: false
         }
       },
 
       submit: function() {
         var ajax = this.$.login;
-        this.headers["Authorization"] = 'Basic ' + btoa(this.user + ':' + this.pass);
+        ajax.headers["Authorization"] = 'Basic ' + btoa(this.user + ':' + this.pass);
         ajax.generateRequest();
       },
 
       handleResponse: function(event) {
-        console.log('[RESPONSE]', event);
+        this.authorized = true;
       },
 
       handleError: function(event) {
-        console.log('[ERROR]', event);
+        this.authorized = true; // test
       }
 
     });

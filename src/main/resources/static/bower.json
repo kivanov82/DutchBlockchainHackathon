@@ -4,6 +4,9 @@
   "dependencies": {
     "paper-elements": "PolymerElements/paper-elements#^1.0.7",
     "paper-ui-elements": "PolymerElements/paper-ui-elements",
-    "iron-elements": "PolymerElements/iron-elements#^1.0.10"
+    "iron-elements": "PolymerElements/iron-elements#^1.0.10",
+    "google-youtube": "^1.2.1",
+    "google-map": "^1.2.0",
+    "geo-location": "^1.0.6"
   }
 }

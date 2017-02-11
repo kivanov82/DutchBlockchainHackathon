@@ -5,30 +5,63 @@
 <link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-location/iron-location.html">
+
 
 <link rel="import" href="../dbh-login/dbh-login.html">
+<link rel="import" href="../dbh-home/dbh-home.html">
 <link rel="import" href="../dbh-profile-musician/dbh-profile-musician.html">
 
 <dom-module id="dbh-app">
   <template>
     <style>
+      html {
+        color: white;
+      }
+
       :host {
         display: block;
         font-family: Roboto;
+        color: white;
       }
 
-      #mainContainer {
-        border-right: 1px solid black;
+      paper-drawer-panel {
+        --paper-drawer-panel-main-container: {
+          background-color: rgb(102,205,170);
+          color: white;
+        };
+
+        --paper-drawer-panel-left-drawer-container: {
+          background-color: rgb(102,205,170);
+          color: white;
+        };
+      }
+      paper-menu,
+      paper-item {
+        background: rgb(102,205,170);
+        color: white;
+      }
+
+      paper-toolbar {
+        background: rgb(191,33,32)
+      }
+
+      paper-input {
+        color: white
       }
     </style>
+    <iron-location id="location"></iron-location>
     <paper-drawer-panel narrow>
       <paper-header-panel drawer>
         <paper-toolbar>
           <div>Menu</div>
         </paper-toolbar>
-        <paper-menu>
-          <paper-item on-tap="show1">Item 1</paper-item>
-          <paper-item on-tap="show2">Item 2</paper-item>
+        <paper-item hidden="[[authorized]]">Login</paper-item>
+        <paper-menu hidden="[[!authorized]]" selected="{{selectedIndex}}">
+          <paper-item>Home</paper-item>
+          <paper-item>News</paper-item>
+          <paper-item>About us</paper-item>
+          <paper-item>Register/login</paper-item>
         </paper-menu>
       </paper-header-panel>
       <paper-header-panel main>
@@ -37,8 +70,9 @@
           <div>Music2Nation</div>
         </paper-toolbar>
         <div>
-          <dbh-login hidden="[[hidden1]]"></dbh-login>
-          <dbh-profile-musician hidden="[[hidden2]]"></dbh-profile-musician>
+          <dbh-login hidden="[[authorized]]" authorized="{{authorized}}"></dbh-login>
+          <dbh-home id="item0"></dbh-home>
+          <dbh-profile-musician id="item1"></dbh-profile-musician>
         </div>
       </paper-header-panel>
     </paper-drawer-panel>
@@ -50,24 +84,34 @@
       is: 'dbh-app',
 
       properties: {
-        hidden1: {
-          type: Boolean,
-          value: false
+        selectedIndex: {
+          type: Number,
+          value: 0,
+          observer: 'menuChanged'
         },
-        hidden2: {
+        authorized: {
           type: Boolean,
-          value: true
+          observer: 'authorizedChanged'
         }
       },
 
-      show1: function() {
-        this.hidden1 = false;
-        this.hidden2 = true;
+      ready: function() {
+        this.$.item0.hidden = true;
+        this.$.item1.hidden = true;
       },
 
-      show2: function() {
-        this.hidden1 = true;
-        this.hidden2 = false;
+      menuChanged: function(newIndex, oldIndex) {
+          if (!this.authorized) {
+              return;
+          }
+          if (typeof oldIndex != "undefined") {
+              this.$["item" + oldIndex].hidden = true;
+          }
+          this.$["item" + newIndex].hidden = false;
+      },
+
+      authorizedChanged: function() {
+        this.$.item0.hidden = false;
       }
 
     });
