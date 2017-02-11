@@ -17,7 +17,7 @@
                 object-fit: cover;
             }
         </style>
-        <div id="artist" class="artist" on-mouseover="mouseOver" on-mouseout="mouseOut">
+        <div id="artist" class="artist" on-tab="click" on-mouseover="mouseOver" on-mouseout="mouseOut">
             <img class="img" src="[[image]]"></paper-card>
         </div>
     </template>
@@ -28,7 +28,11 @@
         is: 'dbh-artist-image',
 
         properties: {
-            image: String
+            image: String,
+            musician: {
+                type: String,
+                notify: true
+            }
         },
 
         mouseOver: function() {
@@ -41,6 +45,10 @@
             this.$.artist.style.margin = '20px';
             this.$.artist.style.width = '150px';
             this.$.artist.style.height = '120px';
+        },
+
+        click: function (event) {
+            this.musician = event.target.id;
         }
 
     });

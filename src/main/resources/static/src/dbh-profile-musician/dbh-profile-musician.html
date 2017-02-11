@@ -1,20 +1,123 @@
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="dbh-profile-musician">
     <template>
         <style>
+            .content {
+                display: block;
+                background: rgb(60, 60, 60);
+                margin: 30px;
+                padding: 20px;
+            }
 
+            .container {
+                display: block;
+                height: 60px;
+                margin: 10px;
+                padding: 10px;
+                height: 100%;
+                background: rgb(30, 92, 87);
+            }
+
+            .left {
+                margin-left: 40px;
+                margin-top: 20px;
+                margin-bottom: 60px;
+            }
+
+            .right {
+                margin-right: 40px;
+                margin-top: 20px;
+                margin-bottom: 60px;
+                width: 500px;
+            }
+
+            .title {
+                background: rgb(191, 33, 32);
+                padding: 10px;
+                margin-right: 0px;
+            }
+
+            .first {
+                width: 70px;
+            }
+
+            .second {
+                width: 70px;
+            }
+
+            .intro {
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+
+            .profilePic {
+                background: black;
+                width: 150px;
+                height: 120px;
+                margin: 20px;
+            }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
-
-        <paper-material elevation="0" class="horizontal layout center-justified">
-            <div class="vertical layout center-justified">
-                <paper-input disabled id="balanceInput" label="Balance" value="{{balance}}"></paper-input>
-                <paper-input disabled id="reputationInput" label="Reputation" value="{{reputation}}"></paper-input>
+        <div>
+            <div class="content flex layout wrap">
+                <div class="container horizontal layout flex">
+                    <div class="left">
+                        <div>
+                            <div class="title first">Profile</div>
+                            <div class="intro">Band super cool dude</div>
+                            <div class="layout vertical">
+                                <div class="layout horizontal">
+                                    <div>
+                                        Text
+                                    </div>
+                                    <div class="profilePic">
+                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                    </div>
+                                </div>
+                                <div class="layout horizontal">
+                                    <div class="layout vertical">
+                                        <div class="title first">Goals</div>
+                                        <div>
+                                            Text
+                                        </div>
+                                    </div>
+                                    <div class="layout vertical">
+                                        <div class="title first">Connect</div>
+                                        <div class="title first">Reward</div>
+                                        <div class="title first">Support</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layout flex"></div>
+                    <div class="right">
+                        <div>
+                            <div class="title second">Foto & Video</div>
+                            <div class="layout vertical">
+                                <div class="layout horizontal">
+                                    <div class="profilePic">
+                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                    </div>
+                                    <div class="profilePic">
+                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                    </div>
+                                </div>
+                                <div class="layout horizontal">
+                                    <div class="profilePic">
+                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                    </div>
+                                    <div class="profilePic">
+                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </paper-material>
+        </div>
     </template>
 
     <script>
@@ -25,4 +128,5 @@
     });
 
   </script>
+
 </dom-module>
