@@ -60,18 +60,17 @@
       },
 
       handleBalance: function(event) {
-        console.log(event);
-        this.balance = +this.balance + 1;
-        setTimeout(function() {
-            this.$.infoBalance.generateRequest();
-        }, 1000);
+        this.balance = event.detail.response;
+        this.async(function() {
+          this.$.infoBalance.generateRequest();
+        }, 5000);
       },
 
       handleReputation: function(event) {
-        this.reputation = +this.reputation + 1;
-        setTimeout(function() {
-            this.$.infoReputation.generateRequest();
-        }, 1000);
+        this.reputation = event.detail.response;
+        this.async(function() {
+          this.$.infoReputation.generateRequest();
+        }, 5000);
       }
 
     });
