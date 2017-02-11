@@ -10,6 +10,9 @@
 
 <link rel="import" href="../dbh-login/dbh-login.html">
 <link rel="import" href="../dbh-home/dbh-home.html">
+<link rel="import" href="../dbh-home/dbh-news.html">
+<link rel="import" href="../dbh-home/dbh-about-us.html">
+<link rel="import" href="../dbh-home/dbh-contact.html">
 <link rel="import" href="../dbh-profile-musician/dbh-profile-musician.html">
 
 <dom-module id="dbh-app">
@@ -25,20 +28,8 @@
         color: white;
       }
 
-      paper-drawer-panel {
-        --paper-drawer-panel-main-container: {
-          background-color: rgb(102,205,170);
-          color: white;
-        };
-
-        --paper-drawer-panel-left-drawer-container: {
-          background-color: rgb(102,205,170);
-          color: white;
-        };
-      }
       paper-menu,
       paper-item {
-        background: rgb(102,205,170);
         color: white;
       }
 
@@ -51,31 +42,21 @@
       }
     </style>
     <iron-location id="location"></iron-location>
-    <paper-drawer-panel narrow>
-      <paper-header-panel drawer>
-        <paper-toolbar>
-          <div>Menu</div>
-        </paper-toolbar>
-        <paper-item hidden="[[authorized]]">Login</paper-item>
-        <paper-menu hidden="[[!authorized]]" selected="{{selectedIndex}}">
-          <paper-item>Home</paper-item>
-          <paper-item>News</paper-item>
-          <paper-item>About us</paper-item>
-          <paper-item>Register/login</paper-item>
-        </paper-menu>
-      </paper-header-panel>
-      <paper-header-panel main>
-        <paper-toolbar>
-          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-          <div>Music2Nation</div>
-        </paper-toolbar>
-        <div>
-          <dbh-login hidden="[[authorized]]" authorized="{{authorized}}"></dbh-login>
-          <dbh-home id="item0"></dbh-home>
-          <dbh-profile-musician id="item1"></dbh-profile-musician>
-        </div>
-      </paper-header-panel>
-    </paper-drawer-panel>
+    <paper-toolbar flex layout horizontal justified>
+        <paper-item id="0" on-tap="openScreen">Home</paper-item>
+        <paper-item id="1" on-tap="openScreen">News</paper-item>
+        <paper-item id="2" on-tap="openScreen">About us</paper-item>
+        <paper-item id="3" on-tap="openScreen">Contact</paper-item>
+        <paper-item id="4" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
+    </paper-toolbar>
+    <div>
+      <dbh-home id="item0"></dbh-home>
+      <dbh-news id="item1"></dbh-news>
+      <dbh-about-us id="item2"></dbh-about-us>
+      <dbh-contact id="item3"></dbh-contact>
+      <dbh-login id="item4" authorized="{{authorized}}"></dbh-login>
+      <dbh-profile-musician id="item5"></dbh-profile-musician>
+    </div>
   </template>
 
   <script>
@@ -87,7 +68,7 @@
         selectedIndex: {
           type: Number,
           value: 0,
-          observer: 'menuChanged'
+          observer: 'selectedIndexChanged'
         },
         authorized: {
           type: Boolean,
@@ -98,20 +79,25 @@
       ready: function() {
         this.$.item0.hidden = true;
         this.$.item1.hidden = true;
+        this.$.item3.hidden = true;
+        this.$.item4.hidden = true;
+        this.$.item5.hidden = true;
       },
 
-      menuChanged: function(newIndex, oldIndex) {
-          if (!this.authorized) {
-              return;
-          }
-          if (typeof oldIndex != "undefined") {
-              this.$["item" + oldIndex].hidden = true;
-          }
-          this.$["item" + newIndex].hidden = false;
+      openScreen: function(id) {
+        this.selectedIndex = +event.target.id;
+      },
+
+      selectedIndexChanged: function(newIndex, oldIndex) {
+        console.log(newIndex,oldIndex);
+        if (oldIndex) {
+          this.$["item" + oldIndex].hidden = true;
+        }
+        this.$["item" + newIndex].hidden = false;
       },
 
       authorizedChanged: function() {
-        this.$.item0.hidden = false;
+        this.selectedIndex = 0;
       }
 
     });
