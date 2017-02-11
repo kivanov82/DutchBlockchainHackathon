@@ -1,11 +1,35 @@
 <dom-module id="dbh-home-musician">
     <template>
         <style>
+            #graphs {
+                @apply(--layout-vertical);
+                @apply(--layout-wrap);
+                height: 280px;
+                /*width: 384px;*/
+            }
 
+            #graphs > paper-card {
+                box-sizing: border-box;
+                max-width: 220px;
+                max-height: 266px;
+                margin: 4px;
+                flex: 0 0 auto;
+            }
         </style>
-        <paper-material elevation="3">
-            Hi musician!
-        </paper-material>
+        <div id="graphs">
+            <paper-card image="img/graphs_1.jpg">
+            </paper-card>
+
+            <paper-card image="img/graphs_2.jpg">
+            </paper-card>
+
+            <paper-card image="img/graphs_3.jpg">
+            </paper-card>
+
+            <paper-card image="http://placehold.it/220x266/FFC107/000000">
+            </paper-card>
+
+        </div>
     </template>
 
     <script>
