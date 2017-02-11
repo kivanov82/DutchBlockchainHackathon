@@ -2,17 +2,17 @@ package nl.hackathon.web.musician;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import nl.hackathon.RatingService;
+import nl.hackathon.WalletService;
 import nl.hackathon.ethereum.contracts.RatingContract;
 import org.adridadou.ethereum.EthereumFacade;
 import org.adridadou.ethereum.keystore.AccountProvider;
 import org.adridadou.ethereum.values.ContractAbi;
 import org.adridadou.ethereum.values.EthAccount;
 import org.adridadou.ethereum.values.EthAddress;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +35,11 @@ public class MusicianController {
     private String ratingAddress;
     @Value("${main.pkey}")
     private String mainPKey;
+    @Autowired
+    private WalletService walletService;
+    @Autowired
+    private RatingService ratingService;
+
 
     @Autowired
     private EthereumFacade ethereumFacade;
@@ -53,23 +58,13 @@ public class MusicianController {
     @ResponseBody
     public BigInteger getRating() {
         RatingContract ratingContract = ethereumFacade
-                .createContractProxy(new ContractAbi(getWalletAbi()), EthAddress.of(ratingAddress), getSender(), RatingContract.class);
+                .createContractProxy(new ContractAbi(ratingService.getRatingAbi()), EthAddress.of(ratingAddress), getSender(), RatingContract.class);
         return ratingContract.ratings(EthAddress.of(musicianAddress));
     }
 
     private EthAccount getSender() {
         return AccountProvider
                 .fromPrivateKey(mainPKey);
-    }
-
-    private String getWalletAbi() {
-        String abi = null;
-        try {
-            abi = IOUtils.toString(this.getClass().getResourceAsStream("/contracts/WalletContract.interface"), EthereumFacade.CHARSET);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return abi;
     }
 
 }

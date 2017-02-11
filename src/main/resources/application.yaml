@@ -20,7 +20,7 @@ spring:
   profiles: integration
 contract:
     musician:
-          rating: 227e1979d42b02c152cfa7735bcaa980c682fc
+          rating: 00227e1979D42B02c152cFa7735bcaA980c682fC
           wallet1: e44fd7206ad06d8a91553e51ce54f3f1613fa223
 
 ---
