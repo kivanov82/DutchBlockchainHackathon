@@ -66,6 +66,11 @@
           type: Boolean,
           notify: true,
           value: false
+        },
+        role: {
+            type: String,
+            notify: true,
+            value: "guest"
         }
       },
 
@@ -77,6 +82,9 @@
 
       handleResponse: function(event) {
         this.authorized = true;
+        if (event.detail.response.authorities) {
+            this.role = event.detail.response.authorities[0].authority;
+        }
       },
 
       handleError: function(event) {
