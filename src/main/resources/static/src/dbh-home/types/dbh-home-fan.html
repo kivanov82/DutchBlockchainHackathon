@@ -1,21 +1,54 @@
 <dom-module id="dbh-home-fan">
     <template>
         <style>
+            .content {
+                display: block;
+                background: rgb(60,60,60);
+                margin: 30px;
+                padding: 20px;
+            }
 
+            .container {
+                display: block;
+                height: 60px;
+                margin: 10px;
+                padding: 10px;
+                height: 100%;
+                background: rgb(30, 92, 87);
+            }
+
+            .title {
+                display: block;
+                background: rgb(191,33,32);
+                padding: 10px;
+                float: left;
+                margin-left: 40px;
+                margin-right: 40px;
+                margin-top: 20px;
+            }
+
+            .intro {
+                margin-left: 40px;
+                margin-top: 20px;
+            }
         </style>
-        <paper-material elevation="3">
-            Hi fan!
-        </paper-material>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <div>
+            <div class="content flex layout wrap">
+                <div class="container layout vertical">
+                    <div class="title layout horizontal">
+                        <div>Following</div>
+                    </div>
+                    <div class="intro">Some text here</div>
+                </div>
+            </div>
+        </div>
     </template>
 
     <script>
     Polymer({
 
-        is: 'dbh-home-fan',
-
-        properties: {
-            role: String
-        }
+        is: 'dbh-home-fan'
 
     });
   </script>
