@@ -18,10 +18,9 @@
             }
 
             .title {
-                display: block;
+                @apply(--layout-horizontal);
                 background: rgb(191,33,32);
                 padding: 10px;
-                float: left;
                 margin-left: 40px;
                 margin-right: 40px;
                 margin-top: 20px;
@@ -36,7 +35,7 @@
         <div>
             <div class="content flex layout wrap">
                 <div class="container layout vertical">
-                    <div class="title layout horizontal">
+                    <div class="title">
                         <div>Following</div>
                     </div>
                     <div class="intro">Some text here</div>
