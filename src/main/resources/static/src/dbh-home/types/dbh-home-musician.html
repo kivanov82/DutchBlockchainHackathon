@@ -1,6 +1,23 @@
 <dom-module id="dbh-home-musician">
     <template>
         <style>
+
+            .content {
+                display: block;
+                background: rgb(60, 60, 60);
+                margin: 30px;
+                padding: 20px;
+            }
+
+            .container {
+                display: block;
+                height: 60px;
+                margin: 10px;
+                padding: 40px;
+                height: 100%;
+                background: rgb(30, 92, 87);
+            }
+
             #graphs {
                 @apply(--layout-vertical);
                 @apply(--layout-wrap);
@@ -26,34 +43,72 @@
             }
 
             #graph-main {
-                padding: 110px;
+                padding: 10px;
             }
 
-            #graph2 > paper-card {
-                padding-left: 83px;
-                padding-bottom: 150px;
-                font-size: 45px;
+            .graphText1 {
+                bottom: 100px;
+                left: 100px;
+                position: relative;
                 color: rgb(30, 92, 87);
+                font-family: Oswald;
+                font-size: 22px;
+                font-weight: inherit;
+            }
+
+            .graphText2 {
+                position: relative;
+                bottom: 190px;
+                left: 73px;
+                color: rgb(30, 92, 87);
+                font-family: Oswald;
+                font-size: 22px;
+                font-weight: bold;
             }
 
         </style>
+        <iron-ajax
+                auto
+                id="infoBalance"
+                method="GET"
+                url="http://localhost:9090/musician/getWalletBalance"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleBalance"
+                debounce-duration="300"></iron-ajax>
+        <iron-ajax
+                auto
+                id="infoReputation"
+                method="GET"
+                url="http://localhost:9090/musician/getRating"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleReputation"
+                debounce-duration="300"></iron-ajax>
+
         <div id="graph-main">
-            <paper-button id="graphsButton" disabled>Support</paper-button>
-            <div id="overviewText">An overview from the received support</div>
+            <div class="content flex layout wrap">
+                <div class="container layout vertical">
+                    <paper-button id="graphsButton" disabled>Support</paper-button>
+                    <div id="overviewText">An overview from the received support</div>
 
-            <div id="graphs">
-                <paper-card id="graph1" image="img/graphs_1.jpg">
-                </paper-card>
+                    <div id="graphs">
+                        <paper-card id="graph1" image="img/graphs_1.jpg">
+                            <div class="graphText1">[[reputation]]</div>
+                        </paper-card>
 
-                <paper-card id="graph2" image="img/graphs_2.jpg" heading="18 ETH">
-                </paper-card>
+                        <paper-card id="graph2" image="img/graphs_2.jpg">
+                            <div class="graphText2">[[balance]] ETH</div>
+                        </paper-card>
 
-                <paper-card id="graph3" image="img/graphs_3.jpg">
-                </paper-card>
+                        <paper-card id="graph3" image="img/graphs_3.jpg">
+                        </paper-card>
 
-                <paper-card id="graph4" image="http://placehold.it/220x266/FFC107/000000">
-                </paper-card>
+                        <paper-card id="graph4" image="http://placehold.it/220x266/FFC107/000000">
+                        </paper-card>
 
+                    </div>
+                </div>
             </div>
         </div>
     </template>
@@ -64,7 +119,38 @@
         is: 'dbh-home-musician',
 
         properties: {
-            role: String
+            headers: {
+                type: Object,
+                value: function () {
+                    return {};
+                }
+            },
+            balance: {
+                type: Number,
+                value: 0,
+            },
+            reputation: {
+                type: Number,
+                value: 0,
+            }
+        },
+
+        ready: function () {
+            this.headers["Authorization"] = 'Basic ' + btoa('Fan' + ':' + 'password');
+        },
+
+        handleBalance: function (event) {
+            this.balance = event.detail.response;
+            this.async(function () {
+                this.$.infoBalance.generateRequest();
+            }, 5000);
+        },
+
+        handleReputation: function (event) {
+            this.reputation = event.detail.response;
+            this.async(function () {
+                this.$.infoReputation.generateRequest();
+            }, 5000);
         }
 
     });

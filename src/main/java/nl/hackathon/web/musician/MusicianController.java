@@ -2,6 +2,7 @@ package nl.hackathon.web.musician;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.concurrent.ExecutionException;
 
@@ -47,8 +48,8 @@ public class MusicianController {
 
     @RequestMapping(value = "/getWalletBalance", method = GET)
     @ResponseBody
-    public BigInteger getWalletBalance() {
-        return ethereumFacade.getBalance(EthAddress.of(walletAddress)).inWei();
+    public BigDecimal getWalletBalance() {
+        return ethereumFacade.getBalance(EthAddress.of(walletAddress)).inEth();
     }
 
     @RequestMapping(value = "/getRating", method = GET)

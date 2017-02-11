@@ -8,24 +8,7 @@
 
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
-        <iron-ajax
-                auto
-                id="infoBalance"
-                method="GET"
-                url="http://localhost:9090/musician/getWalletBalance"
-                handle-as="json"
-                headers="[[headers]]"
-                on-response="handleBalance"
-                debounce-duration="300"></iron-ajax>
-        <iron-ajax
-                auto
-                id="infoReputation"
-                method="GET"
-                url="http://localhost:9090/musician/getRating"
-                handle-as="json"
-                headers="[[headers]]"
-                on-response="handleReputation"
-                debounce-duration="300"></iron-ajax>
+
         <paper-material elevation="0" class="horizontal layout center-justified">
             <div class="vertical layout center-justified">
                 <paper-input disabled id="balanceInput" label="Balance" value="{{balance}}"></paper-input>
@@ -38,39 +21,6 @@
     Polymer({
 
       is: 'dbh-profile-musician',
-
-      properties: {
-        headers: {
-            type: Object,
-            value: function(){return {};}
-        },
-        balance: {
-          type: String,
-          value: '0',
-        },
-        reputation: {
-          type: String,
-          value: '0',
-        }
-      },
-
-      ready: function() {
-        this.headers["Authorization"] = 'Basic ' + btoa('Fan' + ':' + 'password');
-      },
-
-      handleBalance: function(event) {
-        this.balance = event.detail.response;
-        this.async(function() {
-          this.$.infoBalance.generateRequest();
-        }, 5000);
-      },
-
-      handleReputation: function(event) {
-        this.reputation = event.detail.response;
-        this.async(function() {
-          this.$.infoReputation.generateRequest();
-        }, 5000);
-      }
 
     });
 

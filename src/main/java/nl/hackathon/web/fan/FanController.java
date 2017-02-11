@@ -34,7 +34,7 @@ public class FanController {
     @RequestMapping(value = "/donate", method = POST)
     @ResponseBody
     public void donate() throws ExecutionException, InterruptedException {
-        ethereumFacade.sendEther(getSender(), EthAddress.of(walletAddress), EthValue.wei(BigInteger.TEN)).get();
+        ethereumFacade.sendEther(getSender(), EthAddress.of(walletAddress), EthValue.ether(BigInteger.ONE)).get();
     }
 
     private EthAccount getSender() {
