@@ -57,6 +57,13 @@
                 height: 120px;
                 margin: 20px;
             }
+
+            .img {
+                width: 100%;
+                height: 100%;
+                max-height: 120px;
+                object-fit: cover;
+            }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
         <div>
@@ -72,7 +79,7 @@
                                         Text
                                     </div>
                                     <div class="profilePic">
-                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                        <img class="img" src="{{image}}"></paper-card>
                                     </div>
                                 </div>
                                 <div class="layout horizontal">
@@ -124,6 +131,10 @@
     Polymer({
 
       is: 'dbh-profile-musician',
+
+      properties: {
+        image: String
+      }
 
     });
 

@@ -17,7 +17,7 @@
                 object-fit: cover;
             }
         </style>
-        <div id="artist" class="artist" on-tab="click" on-mouseover="mouseOver" on-mouseout="mouseOut">
+        <div id="artist" class="artist" on-tap="onTap" on-mouseover="mouseOver" on-mouseout="mouseOut">
             <img class="img" src="[[image]]"></paper-card>
         </div>
     </template>
@@ -28,11 +28,7 @@
         is: 'dbh-artist-image',
 
         properties: {
-            image: String,
-            musician: {
-                type: String,
-                notify: true
-            }
+            image: String
         },
 
         mouseOver: function() {
@@ -47,8 +43,11 @@
             this.$.artist.style.height = '120px';
         },
 
-        click: function (event) {
-            this.musician = event.target.id;
+        onTap: function (event) {
+            console.log(event);
+            this.fire('selectMusician', {
+                image: this.image
+            });
         }
 
     });

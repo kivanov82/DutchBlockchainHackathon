@@ -34,8 +34,7 @@
           }
 
           paper-item {
-              font-family: Oswald;
-          !important;
+              font-family: Oswald; !important;
           }
 
       </style>
@@ -56,7 +55,7 @@
           <dbh-about-us id="item2"></dbh-about-us>
           <dbh-contact id="item3"></dbh-contact>
           <dbh-login id="item4" role="{{role}}" authorized="{{authorized}}"></dbh-login>
-          <dbh-profile-musician id="item5"></dbh-profile-musician>
+          <dbh-profile-musician id="item5" image="{{image}}"></dbh-profile-musician>
         </div>
       </div>
   </template>
@@ -79,7 +78,14 @@
         role: {
             type: String,
             observer: 'roleChanged'
+        },
+        image: {
+            type: String
         }
+      },
+
+      listeners: {
+        selectMusician: 'musicianChanged'
       },
 
       ready: function() {
@@ -90,7 +96,13 @@
         this.$.item5.hidden = true;
       },
 
-      openScreen: function(id) {
+      musicianChanged: function(e) {
+        console.log(e);
+        this.image = e.detail.image;
+        this.selectedIndex = 5;
+      },
+
+      openScreen: function(event) {
         this.selectedIndex = +event.target.id;
       },
 
