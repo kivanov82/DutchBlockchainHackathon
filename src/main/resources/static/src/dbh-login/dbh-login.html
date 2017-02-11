@@ -77,6 +77,11 @@
 
       handleResponse: function(event) {
         this.authorized = true;
+          if (event.detail.response.authorities[0].authority === "ROLE_FAN") {
+
+          } else if (event.detail.response.authorities[0].authority === "ROLE_MUSICIAN") {
+
+          }
       },
 
       handleError: function(event) {
