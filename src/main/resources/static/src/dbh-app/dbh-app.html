@@ -6,6 +6,7 @@
 
 
 <link rel="import" href="../dbh-login/dbh-login.html">
+<link rel="import" href="../dbh-maps/dbh-maps.html">
 <link rel="import" href="../dbh-home/dbh-home.html">
 <link rel="import" href="../dbh-news/dbh-news.html">
 <link rel="import" href="../dbh-about-us/dbh-about-us.html">
@@ -49,7 +50,7 @@
         <paper-item id="4" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
     </paper-toolbar>
     <div main>
-      <dbh-home id="item0" role="{{role}}"></dbh-home>
+      <dbh-maps id="item0" role="{{role}}"></dbh-maps>
       <dbh-news id="item1"></dbh-news>
       <dbh-about-us id="item2"></dbh-about-us>
       <dbh-contact id="item3"></dbh-contact>

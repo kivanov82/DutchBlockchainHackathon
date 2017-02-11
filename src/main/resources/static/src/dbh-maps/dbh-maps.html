@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/google-map/google-map.html">
+
+<dom-module id="dbh-maps">
+    <template>
+        <style>
+            google-map {
+                height: 300px;
+                width: 400px;
+                float: right;
+                margin-right: 200px;
+            }
+
+            .yellow {
+                color: yellow;
+            }
+
+            #rood {
+                color: red;
+            }
+        </style>
+
+
+        <div id="abc" class="resizable">
+        <google-map fit-to-marker latitude="53.209934" longitude="6.567842100000007" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc">
+            <google-map-marker latitude="53.224529" longitude="6.564216" draggable="true"></google-map-marker>
+            <google-map-marker latitude="52.074733" longitude="4.307655" draggable="true"></google-map-marker>
+            <google-map-marker latitude="52.362141" longitude="4.883826" draggable="true"></google-map-marker>
+        </google-map>
+
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'dbh-maps',
+
+                properties: {
+                role: String
+            }
+
+        });
+    </script>
+</dom-module>
