@@ -1,13 +1,24 @@
+contract RatingContract {
+    //proxy contract for actual 'rating' contract
+    function rate(address fan, address musician) returns (bool) {}
+}
+
 contract WalletContract {
 
-    // logged events:
-    // Funds has arrived into the wallet (record how much).
-    event Deposit(address from, uint value);
+    address public rating;
+    address public musician;
+
+    function WalletContract(address ratingAddress, address musicianAddress){
+        rating = ratingAddress;
+        musician = musicianAddress;
+    }
 
     // gets called when no other function matches
-    function() {
+    function() payable {
         // just being sent some cash?
-        if (msg.value > 0)
-            Deposit(msg.sender, msg.value);
+        RatingContract ratingProxy = RatingContract(rating);
+        if (!ratingProxy.rate(msg.sender, musician)){
+            //smth bad
+        }
     }
 }

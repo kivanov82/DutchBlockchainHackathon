@@ -1,1 +1,1 @@
-[{"payable":false,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Deposit","type":"event"}]
+[{"constant":false,"inputs":[{"name":"fan","type":"address"},{"name":"musician","type":"address"}],"name":"rate","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"}]
