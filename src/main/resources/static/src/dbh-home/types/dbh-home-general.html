@@ -1,16 +1,47 @@
 <dom-module id="dbh-home-general">
     <template>
         <style>
-            .paper-material-0 {
-                height: 400px;
+            .content {
+                display: block;
+                background: rgb(60,60,60);
+                margin: 30px;
+                margin-top: 0px;
+                padding: 20px;
+            }
+
+            .container {
+                display: block;
+                height: 60px;
+                margin: 10px;
+                padding: 10px;
+                height: 100%;
+                background: rgb(30, 92, 87);
+            }
+
+            .shout {
+                background-color: rgb(191,33,32);
+                width: 300px;
+                height: 300px;
+                line-height: 300px;
+                margin: 20px;
+                margin-bottom: 50px;
+                margin-top: 50px;
+                text-align: center;
+                font-size: 50px;
+                font-family: Oswald;
             }
         </style>
-        <paper-material elevation="0">
-
-            TODO
-            GOALS
-
-        </paper-material>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <div class="content">
+            <div class="container">
+                <div class="layout horizontal flex center-justified">
+                    <div class="flex layout vertical center shout"><div>Discover</div></div>
+                    <div class="flex layout vertical center shout"><div>Connect</div></div>
+                    <div class="flex layout vertical center shout"><div>Reward</div></div>
+                    <div class="flex layout vertical center shout"><div>Support</div></div>
+                </div>
+            </div>
+        </div>
     </template>
 
     <script>
