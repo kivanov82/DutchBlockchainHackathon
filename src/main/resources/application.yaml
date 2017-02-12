@@ -13,8 +13,8 @@ musician:
     pkey: 'cebba3ca1a08d8b578a33b208c2e45366f4ad8138e7e7b79d2782ca793dd1085'
 contract:
     musician:
-          rating: '0x916EB50f5633c22B4C0119c4440fF1862283Ef87'
-          wallet: '0xFCfd0c619f82d82E0D64AD07c6670898E3338fF7'
+          rating: '0x07f0E25a37aBbe3aE748DCfc2f1dAdF10D42B4B4'
+          wallet: '0x86Fd8bDB9E19C6443Cd19e3102c5Fb27dD6294bA'
 
 ---
 spring:
