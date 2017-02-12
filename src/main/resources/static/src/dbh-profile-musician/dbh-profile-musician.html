@@ -75,7 +75,7 @@
             .img {
                 width: 200px;
                 height: 100%;
-                max-height: 120px;
+                max-height: 150px;
                 object-fit: cover;
             }
 
@@ -88,6 +88,16 @@
 
             .player {
                 padding: 10px;
+            }
+
+            .no-pad {
+                padding: 10px;
+                margin: 10px;
+                margin-top: 0px;
+            }
+
+            .bot-left {
+                margin-top: 20px;
             }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
@@ -105,10 +115,11 @@
                     <div class="left">
                         <div>
                             <div class="title">Profile</div>
-                            <div class="intro">Band: SuperCool dude</div>
                             <div class="layout vertical">
                                 <div class="layout horizontal">
                                     <div>
+                                        Band: SuperCool dude<br>
+                                        <br>
                                         Ever wanted to experience a time travel machine? This is your change! These four guys from Utrecht will take
                                         you back to the rocking 80’s, space with you in the 90’s and kick you back to the future (psychedelic sounds
                                         included). Edgy guitars and bass that will definetly funk you up. Welcome to the twilight zone where
@@ -118,7 +129,7 @@
                                         <img class="img" src="/img/profile-musician.jpg"></paper-card>
                                     </div>
                                 </div>
-                                <div class="layout horizontal">
+                                <div class="bot-left layout horizontal">
                                     <div class="layout vertical">
                                         <div class="title">Goals</div>
                                         <div>
@@ -128,9 +139,9 @@
                                         </div>
                                     </div>
                                     <div class="layout vertical">
-                                        <paper-button raised>CONNECT</paper-button>
-                                        <paper-button raised on-tap="reward">[[rewardMsg]]</paper-button>
-                                        <paper-button raised>SUPPORT</paper-button>
+                                        <paper-button class="no-pad" raised>CONNECT</paper-button>
+                                        <paper-button class="no-pad" raised on-tap="reward">[[rewardMsg]]</paper-button>
+                                        <paper-button class="no-pad" raised>SUPPORT</paper-button>
                                     </div>
                                 </div>
                             </div>
