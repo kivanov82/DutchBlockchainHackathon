@@ -38,9 +38,6 @@
                 background: rgb(191, 33, 32);
                 padding: 10px;
                 margin: 10px;
-            }
-
-            .first {
                 width: 70px;
             }
 
@@ -70,10 +67,13 @@
             .player {
                 padding: 10px;
             }
+
+            paper-button {
+                color: rgb(191, 33, 32);
+            }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
         <iron-ajax
-                auto
                 id="reward"
                 method="POST"
                 url="http://localhost:9090/fan/donate"
@@ -110,9 +110,9 @@
                                         </div>
                                     </div>
                                     <div class="layout vertical">
-                                        <div class="title first">CONNECT</div>
-                                        <div class="title first" on-tap="reward">[[rewardMsg]]</div>
-                                        <div class="title first">SUPPORT</div>
+                                        <paper-button raised>CONNECT</paper-button>
+                                        <paper-button raised on-tap="reward">[[rewardMsg]]</paper-button>
+                                        <paper-button raised>SUPPORT</paper-button>
                                     </div>
                                 </div>
                             </div>
