@@ -36,7 +36,6 @@
           paper-item {
               font-family: Oswald; !important;
           }
-
       </style>
 
     <iron-location id="location"></iron-location>
@@ -49,8 +48,11 @@
             <paper-item id="3" on-tap="openScreen">Contact</paper-item>
             <paper-item id="4" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
         </paper-toolbar>
+          <div class="layout horizontal center-justified">
+              <img src="../../img/logo.png" width="400" height="180"/>
+          </div>
         <div>
-          <dbh-home id="item0" role="{{role}}"></dbh-home>
+          <dbh-home id="item0" counter="{{counter}}" role="{{role}}"></dbh-home>
           <dbh-news id="item1"></dbh-news>
           <dbh-about-us id="item2"></dbh-about-us>
           <dbh-contact id="item3"></dbh-contact>
@@ -81,7 +83,11 @@
         },
         image: {
             type: String
-        }
+        },
+        counter: {
+            type: Number,
+            value: 0
+        },
       },
 
       listeners: {
@@ -107,11 +113,11 @@
       },
 
       selectedIndexChanged: function(newIndex, oldIndex) {
-        console.log(newIndex,oldIndex);
         if (typeof oldIndex !== "undefined") {
           this.$["item" + oldIndex].hidden = true;
         }
         this.$["item" + newIndex].hidden = false;
+
       },
 
       authorizedChanged: function() {
@@ -119,7 +125,7 @@
       },
 
       roleChanged: function() {
-
+        this.counter++;
       }
 
     });

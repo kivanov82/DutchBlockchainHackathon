@@ -12,7 +12,7 @@
 
 
         <div class="resizable">
-        <google-map fit-to-marker zoom="15" latitude="53.209934" longitude="6.567842100000007" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc">
+        <google-map id="map" fit-to-marker zoom="15" latitude="53.209934" longitude="6.567842100000007" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc">
             <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/red-dot.png" latitude="53.209934" longitude="6.567842100000007"></google-map-marker>
             <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="53.2122536" longitude="6.566071"></google-map-marker>
             <google-map-marker icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" latitude="53.2109805" longitude="6.5640508"></google-map-marker>
@@ -26,7 +26,27 @@
     <script>
         Polymer({
 
-            is: 'dbh-maps'
+            is: 'dbh-maps',
+
+            properties: {
+                counter: {
+                    type: Number,
+                    observer: 'counterChanged'
+                }
+            },
+
+            attached: function() {
+                Polymer.dom.flush();
+                this.$.map.resize();
+            },
+
+            ready: function() {
+                this.$.map.resize();
+            },
+
+            counterChanged: function(newCounter) {
+                this.$.map.resize();
+            }
 
         });
     </script>

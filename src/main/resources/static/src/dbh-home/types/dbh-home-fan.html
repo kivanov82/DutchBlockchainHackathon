@@ -8,6 +8,7 @@
                 display: block;
                 background: rgb(60,60,60);
                 margin: 30px;
+                margin-top: 0px;
                 padding: 20px;
             }
 
@@ -22,13 +23,11 @@
 
             .left {
                 margin-left: 40px;
-                margin-top: 20px;
                 margin-bottom: 60px;
             }
 
             .right {
                 margin-right: 40px;
-                margin-top: 20px;
                 margin-bottom: 60px;
                 width: 500px;
             }
@@ -37,6 +36,7 @@
                 background: rgb(191,33,32);
                 padding: 10px;
                 margin-right: 0px;
+                font-family: Oswald; !important;
             }
 
             .first {
@@ -79,7 +79,7 @@
                         <div>
                             <div class="title second">GEO-track</div>
                             <div class="intro">Music in the hood</div>
-                            <dbh-maps class="map"></dbh-maps>
+                            <dbh-maps id="gmap" counter={{counter}} class="map"></dbh-maps>
                         </div>
                     </div>
                 </div>
@@ -90,8 +90,13 @@
     <script>
     Polymer({
 
-        is: 'dbh-home-fan'
+        is: 'dbh-home-fan',
 
+        properties: {
+            counter: {
+                type: Number
+            }
+        }
     });
   </script>
 </dom-module>

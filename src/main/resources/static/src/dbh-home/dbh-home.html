@@ -8,7 +8,7 @@
 
         </style>
         <dbh-home-general id="guest"></dbh-home-general>
-        <dbh-home-fan id="ROLE_FAN" hidden="true"></dbh-home-fan>
+        <dbh-home-fan counter="{{counter}}" id="ROLE_FAN" hidden="true"></dbh-home-fan>
         <dbh-home-musician id="ROLE_MUSICIAN" hidden="true"></dbh-home-musician>
     </template>
 
@@ -22,6 +22,9 @@
                 type: String,
                 observer: "roleChanged",
                 value: "guest"
+            },
+            counter: {
+                type: Number
             }
         },
 
