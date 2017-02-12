@@ -23,6 +23,7 @@
                 margin-left: 40px;
                 margin-top: 20px;
                 margin-bottom: 60px;
+                max-width: 50%;
             }
 
             .right {
@@ -35,7 +36,7 @@
             .title {
                 background: rgb(191, 33, 32);
                 padding: 10px;
-                margin-right: 0px;
+                margin: 10px;
             }
 
             .first {
@@ -43,7 +44,7 @@
             }
 
             .second {
-                width: 70px;
+                width: 90px;
             }
 
             .intro {
@@ -59,13 +60,22 @@
             }
 
             .img {
-                width: 100%;
+                width: 200px;
                 height: 100%;
                 max-height: 120px;
                 object-fit: cover;
             }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
+        <iron-ajax
+                auto
+                id="reward"
+                method="POST"
+                url="http://localhost:9090/fan/donate"
+                handle-as="json"
+                headers="[[headers]]"
+                on-response="handleReward"
+                debounce-duration="300"></iron-ajax>
         <div>
             <div class="content flex layout wrap">
                 <div class="container horizontal layout flex">
@@ -76,7 +86,12 @@
                             <div class="layout vertical">
                                 <div class="layout horizontal">
                                     <div>
-                                        Text
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                                        make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                                        typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                                        PageMaker including versions of Lorem Ipsum.
                                     </div>
                                     <div class="profilePic">
                                         <img class="img" src="{{image}}"></paper-card>
@@ -86,12 +101,17 @@
                                     <div class="layout vertical">
                                         <div class="title first">Goals</div>
                                         <div>
-                                            Text
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                                            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+                                            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
+                                            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                                            like Aldus PageMaker including versions of Lorem Ipsum.
                                         </div>
                                     </div>
                                     <div class="layout vertical">
                                         <div class="title first">Connect</div>
-                                        <div class="title first">Reward</div>
+                                        <div class="title first" on-tap="reward">[[rewardMsg]]</div>
                                         <div class="title first">Support</div>
                                     </div>
                                 </div>
@@ -133,8 +153,25 @@
       is: 'dbh-profile-musician',
 
       properties: {
-        image: String
-      }
+          image: String,
+          rewardMsg: {
+              type: String,
+              value: 'Reward'
+          },
+          headers: {
+              type: Object,
+              value: function () {
+                  return {};
+              }
+          }
+      },
+
+        handleReward: function () {
+            this.rewardMsg = "Rewarded";
+            this.async(function () {
+                this.$.reward.generateRequest();
+            }, 5000);
+        }
 
     });
 
