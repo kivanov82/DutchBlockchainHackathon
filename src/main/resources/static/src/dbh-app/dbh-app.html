@@ -36,6 +36,12 @@
           paper-item {
               font-family: Oswald; !important;
           }
+
+          paper-button {
+              background: rgb(191,33,32);
+              color: white;
+              margin: 20px;
+          }
       </style>
 
     <iron-location id="location"></iron-location>
@@ -43,21 +49,23 @@
       <div>
         <paper-toolbar>
             <paper-item id="0" on-tap="openScreen">Home</paper-item>
-            <paper-item id="1" on-tap="openScreen">News</paper-item>
-            <paper-item id="2" on-tap="openScreen">About us</paper-item>
-            <paper-item id="3" on-tap="openScreen">Contact</paper-item>
-            <paper-item id="4" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
+            <paper-item id="1" on-tap="openScreen">QR</paper-item>
+            <paper-item id="2" on-tap="openScreen">News</paper-item>
+            <paper-item id="3" on-tap="openScreen">About us</paper-item>
+            <paper-item id="4" on-tap="openScreen">Contact</paper-item>
+            <paper-item id="5" on-tap="openScreen" hidden="[[authorized]]">Register/Login</paper-item>
         </paper-toolbar>
           <div class="layout horizontal center-justified">
               <img src="../../img/logo.png" width="400" height="140"/>
           </div>
         <div>
-          <dbh-home id="item0" counter="{{counter}}" role="{{role}}"></dbh-home>
-          <dbh-news id="item1"></dbh-news>
-          <dbh-about-us id="item2"></dbh-about-us>
-          <dbh-contact id="item3"></dbh-contact>
-          <dbh-login id="item4" role="{{role}}" authorized="{{authorized}}"></dbh-login>
-          <dbh-profile-musician id="item5" image="{{image}}"></dbh-profile-musician>
+            <dbh-home id="item0" counter="{{counter}}" role="{{role}}"></dbh-home>
+            <dbh-qr id="item1"></dbh-qr>
+            <dbh-news id="item2"></dbh-news>
+            <dbh-about-us id="item3"></dbh-about-us>
+            <dbh-contact id="item4"></dbh-contact>
+            <dbh-login id="item5" role="{{role}}" authorized="{{authorized}}"></dbh-login>
+            <dbh-profile-musician id="item6" image="{{image}}"></dbh-profile-musician>
         </div>
       </div>
   </template>
@@ -100,10 +108,11 @@
         this.$.item3.hidden = true;
         this.$.item4.hidden = true;
         this.$.item5.hidden = true;
+        this.$.item6.hidden = true;
 
         console.log(this.$.location.path);
         if (this.$.location.path == '/qr') {
-            this.selectedIndex = 5;
+            this.selectedIndex = 6;
             this.$.location.path = '/';
 
             window.history.pushState({}, null, '/');
@@ -114,7 +123,7 @@
       musicianChanged: function(e) {
         console.log(e);
         this.image = e.detail.image;
-        this.selectedIndex = 5;
+        this.selectedIndex = 6;
       },
 
       openScreen: function(event) {

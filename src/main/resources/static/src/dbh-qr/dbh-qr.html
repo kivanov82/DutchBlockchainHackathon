@@ -1,0 +1,26 @@
+<dom-module id="dbh-qr">
+    <template>
+        <style>
+            paper-button {
+                margin: 20px;
+            }
+        </style>
+        <paper-button on-tap="scan">Scan QR</paper-button>
+    </template>
+
+    <script>
+    Polymer({
+
+      is: 'dbh-qr',
+
+      properties: {
+
+      },
+
+      scan: function() {
+        android.scanQR();
+      }
+
+    });
+  </script>
+</dom-module>
