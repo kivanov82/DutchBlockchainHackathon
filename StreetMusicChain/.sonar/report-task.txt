@@ -1,0 +1,5 @@
+projectKey=Android.App
+serverUrl=http://192.168.1.125:9000
+dashboardUrl=http://192.168.1.125:9000/dashboard/index/Android.App
+ceTaskId=AVovTTSymkHJc6QD7okR
+ceTaskUrl=http://192.168.1.125:9000/api/ce/task?id=AVovTTSymkHJc6QD7okR
