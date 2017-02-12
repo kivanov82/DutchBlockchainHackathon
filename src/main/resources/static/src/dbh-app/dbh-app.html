@@ -100,6 +100,13 @@
         this.$.item3.hidden = true;
         this.$.item4.hidden = true;
         this.$.item5.hidden = true;
+
+        console.log(this.$.location.path);
+        if (this.$.location.path == '/qr') {
+            this.$.item0.hidden = true;
+            this.$.item5.hidden = false;
+            this.$.location.path = '/';
+        }
       },
 
       musicianChanged: function(e) {
