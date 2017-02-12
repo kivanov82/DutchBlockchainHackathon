@@ -4,3 +4,4 @@ component_depth: 1
 languages:
 - java
 - javascript
+- solidity
