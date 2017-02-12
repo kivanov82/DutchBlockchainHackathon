@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
 
 <dom-module id="dbh-profile-musician">
     <template>
@@ -65,6 +66,10 @@
                 max-height: 120px;
                 object-fit: cover;
             }
+
+            .player {
+                padding: 10px;
+            }
         </style>
         <style include="iron-flex iron-flex-alignment"></style>
         <iron-ajax
@@ -86,33 +91,28 @@
                             <div class="layout vertical">
                                 <div class="layout horizontal">
                                     <div>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                        make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                                        typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                                        PageMaker including versions of Lorem Ipsum.
+                                        Ever wanted to experience a time travel machine? This is your change! These four guys from Utrecht will take
+                                        you back to the rocking 80’s, space with you in the 90’s and kick you back to the future (psychedelic sounds
+                                        included). Edgy guitars and bass that will definetly funk you up. Welcome to the twilight zone where
+                                        everything is possible.
                                     </div>
                                     <div class="profilePic">
-                                        <img class="img" src="{{image}}"></paper-card>
+                                        <img class="img" src="/img/profile-musician.jpg"></paper-card>
                                     </div>
                                 </div>
                                 <div class="layout horizontal">
                                     <div class="layout vertical">
                                         <div class="title first">Goals</div>
                                         <div>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                                            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                                            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum.
+                                            - Take over the world <br>
+                                            - We want to let you experience many more timecrashing funky melodic notes. Enter our time machine by
+                                            supporting us and make it happen to record a new album.
                                         </div>
                                     </div>
                                     <div class="layout vertical">
-                                        <div class="title first">Connect</div>
+                                        <div class="title first">CONNECT</div>
                                         <div class="title first" on-tap="reward">[[rewardMsg]]</div>
-                                        <div class="title first">Support</div>
+                                        <div class="title first">SUPPORT</div>
                                     </div>
                                 </div>
                             </div>
@@ -124,19 +124,29 @@
                             <div class="title second">Foto & Video</div>
                             <div class="layout vertical">
                                 <div class="layout horizontal">
-                                    <div class="profilePic">
-                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
-                                    </div>
-                                    <div class="profilePic">
-                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
-                                    </div>
+                                    <google-youtube class="player"
+                                                    video-id="dHeCzUHX_Qc"
+                                                    height="150px"
+                                                    width="200px"
+                                                    rel="0"
+                                                    start="5"
+                                                    autoplay="0">
+                                    </google-youtube>
+                                    <google-youtube class="player"
+                                                    video-id="PgmdZfWX79o"
+                                                    height="150px"
+                                                    width="200px"
+                                                    rel="0"
+                                                    start="5"
+                                                    autoplay="0">
+                                    </google-youtube>
                                 </div>
                                 <div class="layout horizontal">
                                     <div class="profilePic">
-                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                        <img class="img" src="/img/profile-musician-right.jpg"></paper-card>
                                     </div>
                                     <div class="profilePic">
-                                        <img class="img" src="http://placehold.it/150x120/FFC107/000000"></paper-card>
+                                        <img class="img" src="/img/profile-musician-right2.jpg"></paper-card>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +166,7 @@
           image: String,
           rewardMsg: {
               type: String,
-              value: 'Reward'
+              value: 'REWARD'
           },
           headers: {
               type: Object,
@@ -167,10 +177,8 @@
       },
 
         handleReward: function () {
-            this.rewardMsg = "Rewarded";
-            this.async(function () {
-                this.$.reward.generateRequest();
-            }, 5000);
+            this.rewardMsg = "REWARDED";
+            this.$.reward.generateRequest();
         }
 
     });
