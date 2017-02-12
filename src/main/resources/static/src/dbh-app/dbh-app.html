@@ -103,9 +103,11 @@
 
         console.log(this.$.location.path);
         if (this.$.location.path == '/qr') {
-            this.$.item0.hidden = true;
-            this.$.item5.hidden = false;
+            this.selectedIndex = 5;
             this.$.location.path = '/';
+
+            window.history.pushState({}, null, '/');
+            window.dispatchEvent(new CustomEvent('location-changed'));
         }
       },
 
@@ -120,9 +122,7 @@
       },
 
       selectedIndexChanged: function(newIndex, oldIndex) {
-        if (typeof oldIndex !== "undefined") {
-          this.$["item" + oldIndex].hidden = true;
-        }
+        this.$["item" + (oldIndex || 0)].hidden = true;
         this.$["item" + newIndex].hidden = false;
 
       },
